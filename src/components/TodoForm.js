@@ -7,30 +7,11 @@ import '../App.css';
 
 class TodoForm extends Component {
 
-  constructor(props) {
-     super(props);
-     this.state = {
-       checkboxState: true
-     }
-   }
-   onSubmit(event) {
-     const checkedOrNot = [];
-     event.preventDefault();
-   }
-   toggle(event) {
-     this.setState({
-       checkboxState: !this.state.checkboxState
-     });
-   }
-   render() {
-     const checkedOrNot = [];
-     checkedOrNot.push(<p>{this.state.checkboxState ? 'Unchecked' : 'Checked'}</p>);
-     const checkbox = (<span><input type="checkbox" onClick={this.toggle.bind(this)} />
-     <label>Checkbox</label></span>);
-      const { todos , removeCounter  } = this.props
+
+  render() {
+      const { todos , item_left, completed  } = this.props
       const todolist = todos
       console.log ('comments', todolist)
-
     return (
         <center>
         <h1>TODO LIST</h1>
@@ -43,21 +24,17 @@ class TodoForm extends Component {
                onClick={this.props.handleSave} disabled={!this.props.input} >ADD
               </button>
           </div>
-          <div className="item-left">{removeCounter} items left
-          </div>
+          <div className="item-left">{item_left} Items left</div>
+          <div className="item-left">{completed} Items completed</div>
             {
               todolist.map((item, index) => {
                 return <ul id="myUL">
                           <li key={index}>
-                          <div>
-                    <form onSubmit={this.onSubmit.bind(this)}>
-                      {checkbox}
-                    </form>
-                    {checkedOrNot}
-                  </div>
+                            <input type="checkbox" id="cbox3"
+                              onClick={this.props.handleComplete.bind(this, item)} />
                                 <label forHTML="cbox3">{item.todos}
                                 </label>
-                                <button className="btnRemove" onClick={this.props.removeTodo}>REMOVE
+                                <button className="btnRemove" onClick={this.props.removeTodo.bind(this, item)}>REMOVE
                                 </button>
                           </li>
                       </ul>

@@ -32,7 +32,7 @@ body{
 .field {
   margin-bottom: 10px;
   display:flex;
-  width:50%;
+  width:47.4%;
   flex-direction:row;
   box-shadow:
    1px 1px 0 rgb(22, 160, 133),
@@ -226,15 +226,8 @@ label {
 input[type=checkbox]:checked + label {
   color:red;
   text-decoration: line-through;
-} /*This is the MDN spec for doing this*/
-
-#cbox3 {
-  color:blue;
-  text-decoration: line-through;
 }
 
-.cbox4 {
-  font-size: 5em;
-  color:red;
+#cbox3 {
   text-decoration: line-through;
 }

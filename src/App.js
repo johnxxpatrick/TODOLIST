@@ -9,9 +9,10 @@ class App extends Component {
       todo_empty: '',
       todos: [],
       id : 1 ,
-      status :'',
-      counter : 0,
-      input : ''
+      status : '',
+      item_left : 0,
+      input : '',
+      completed: 0
     }
 
   handleChange(prop, e) {
@@ -23,41 +24,50 @@ class App extends Component {
   handleSave(e) {
 
     var obj = {
-      status : 'active',
+      status : false,
       id: this.state.id,
       todos : this.state.todo_empty,
-      counter : this.state.counter,
-
+      item_left : this.state.item_left,
+      completed : this.state.completed
     }
     this.setState ({
       todos : this.state.todos.concat(obj),
       input : '',
       id : this.state.id + 1,
-      counter : this.state.counter + 1,
+      item_left : this.state.item_left + 1
     })
   }
 
-  removeTodo(name, i){
+  removeTodo(item){
     this.setState({
-      counter: this.state.counter - 1
+      item_left: this.state.item_left - 1,
+      completed: this.state.completed - 1
     })
-      let todos = this.state.todos.slice();
-      todos.splice(i, 1);
-      this.setState({
-          todos
-      });
+    const newState = this.state.todos
+    	if (newState.indexOf(item) > -1) {
+      	newState.splice(newState.indexOf(item), 1)
+        this.setState({todos: newState})
   }
+}
+  handleComplete(data){
+    this.setState(prevState => {
+    return {completed: data == 'add' ? prevState.completed - 1: prevState.completed + 1}
+    })
 
-  handleComplete(){
-    this.setState({
-      counter: this.state.counter - 1
-    })
-  }
+    var newList = this.state.todos
+    .map(item => {
+     const isSelected = item.id  === data.id
+     if(isSelected) item.status = !item.status
+
+     return item
+
+  })
+}
+
 
   render() {
-          console.log ('counter', this.state.counter)
-          console.log ('counter1', this.state)
-          console.log ('todos', this.state.todos)
+
+    console.log ('Todos:', this.state.todos)
 
     return (
           <div className="App">
@@ -66,9 +76,10 @@ class App extends Component {
             <TodoForm
                   handleChange={this.handleChange.bind(this,'todo_empty')}
                   handleSave={this.handleSave.bind(this)}
-                  removeCounter={this.state.counter}
+                  removeitem_left={this.state.item_left}
                   removeTodo={this.removeTodo}
                   handleComplete={this.handleComplete.bind(this)}
+
                   {...this.state}
                 />
          </div>
