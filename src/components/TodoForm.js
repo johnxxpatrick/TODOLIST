@@ -9,10 +9,9 @@ class TodoForm extends Component {
 
 
   render() {
-      const { todos , item_left, total  } = this.props
+      const { todos , item_left, total,result  } = this.props
       const todolist = todos
-      console.log('todoCompleted:', total)
-      console.log('todoCompleted:', this.props)
+      console.log('TODO:', todos)
 
     return (
         <center>
@@ -28,11 +27,10 @@ class TodoForm extends Component {
           </div>
           <table className="item-left">
           <tr>
-          <th>{item_left} Items Left</th>
-          <th>{total} Items Completed</th>
+          <th>{total.incomplete} Items Left</th>
+          <th>{total.completed} Items Completed</th>
           </tr>
           </table>
-
             {
               todolist.map((item, index) => {
                 return <ul id="myUL">
@@ -49,6 +47,18 @@ class TodoForm extends Component {
                       </ul>
               })
             }
+            <table className="filter">
+            <tr>
+            <th></th>
+            <th></th>
+            <th><div className="btn-group">
+                  <button onClick={this.props.filterAll}>ALL</button>
+                  <button onClick={this.props.filterActive}>ACTIVE</button>
+                  <button onClick={this.props.filterComplete}>COMPLETED</button>
+                </div>
+            </th>
+            </tr>
+            </table>
       </center>
     )
   }

@@ -219,6 +219,16 @@ ul li.checked::before {
   width: 650px;
   background-color: white;
 }
+.filter{
+  margin-top: 2px;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  font-family:Courier, monospace;
+  font-weight:normal;
+  margin-left: 5px;
+  width: 650px;
+  background-color: white;
+}
 label {
   font-size: 1.3em;
 }
@@ -230,4 +240,28 @@ input[type=checkbox]:checked + label {
 
 #cbox3 {
   text-decoration: line-through;
+}
+.btn-group button {
+    background-color: rgb(26, 188, 156); /* Green background */
+    border: 1px solid black; /* Green border */
+    color: white; /* White text */
+    padding: 10px 24px; /* Some padding */
+    cursor: pointer; /* Pointer/hand icon */
+    float: center; /* Float the buttons side by side */
+}
+
+.btn-group button:not(:last-child) {
+    border-right: none; /* Prevent double borders */
+}
+
+/* Clear floats (clearfix hack) */
+.btn-group:after {
+    content: "";
+    clear: both;
+    display: table;
+}
+
+/* Add a background color on hover */
+.btn-group button:hover {
+    background-color: black;
 }
